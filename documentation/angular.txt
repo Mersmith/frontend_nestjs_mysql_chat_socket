@@ -1,0 +1,8 @@
+$ ng new frontend-realtime-chat
+
+npm run start
+ng serve
+
+ng g s services/test-service/test
+
+ng generate environments
