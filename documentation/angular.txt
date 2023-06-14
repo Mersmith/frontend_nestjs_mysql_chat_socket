@@ -6,3 +6,16 @@ ng serve
 ng g s services/test-service/test
 
 ng generate environments
+
+ng generate m private --routing
+
+ng generate m public --routing
+
+ng g c private/dashboard
+ng g c public/login
+ng g c public/register
+
+ng g g auth
+CanActivate
+
+ng g s user

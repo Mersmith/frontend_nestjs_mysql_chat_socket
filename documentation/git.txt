@@ -4,3 +4,10 @@ git commit -m "Master"
 git log
 git remote add origin https://github.com/Mersmith/frontend_nestjs_mysql_chat_socket.git
 git push origin master
+
+git checkout -b 1_Registrar_Usuario
+git branch
+git status
+git add .
+git commit -m "Registrar"
+git push origin 1_Registrar_Usuario
