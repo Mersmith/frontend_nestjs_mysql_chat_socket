@@ -11,12 +11,17 @@ export interface Test {
 })
 export class TestService {
 
-  constructor(private http: HttpClient, @Inject('APP_ENVIRONMENT') private environment: any) {
+  constructor(
+    private http: HttpClient,
+
+    @Inject('APP_ENVIRONMENT')
+    private environment: any
+  ) {
     console.log(this.environment.apiUrl);
   }
 
   getTest(): Observable<Test> {
     return this.http.get<Test>(environment.apiUrl);
   }
-  
+
 }
