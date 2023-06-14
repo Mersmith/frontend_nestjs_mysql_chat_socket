@@ -11,3 +11,10 @@ git status
 git add .
 git commit -m "Registrar"
 git push origin 1_Registrar_Usuario
+
+git checkout -b 2_Login_JWT
+git branch
+git status
+git add .
+git commit -m "Ingresar"
+git push origin 2_Login_JWT

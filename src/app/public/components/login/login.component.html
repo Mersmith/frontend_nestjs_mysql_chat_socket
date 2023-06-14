@@ -1,2 +1,29 @@
 <p>login works!</p>
-<button [routerLink]="['../register']" >Registrarse</button>
+
+<div class="container">
+
+    <div>
+        <div class="login">
+            <a [routerLink]="['../register']">Registrarse</a>
+        </div>
+    </div>
+
+    <div>
+        <h2>Login</h2>
+        <div>
+            <form [formGroup]="form" (ngSubmit)="ingresar()">
+                <input type="email" formControlName="email" placeholder="Email.">
+                <span *ngIf="email.touched && email.hasError('required')">Email is required.</span>
+                <span *ngIf="email.touched && email.hasError('email')">Email must be valid.</span>
+
+                <input type="password" formControlName="password" placeholder="Contrseña.">
+                <span *ngIf="password.touched && password.hasError('required')">Contraseña is required.</span>
+
+                <span *ngIf="!form.valid">Verique todos los campos.</span>
+
+                <input type="submit" [disabled]="!form.valid" value="Ingresar">
+            </form>
+        </div>
+    </div>
+
+</div>
