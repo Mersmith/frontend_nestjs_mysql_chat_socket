@@ -19,3 +19,7 @@ ng g g auth
 CanActivate
 
 ng g s user
+
+npm i @auth0/angular-jwt --save
+
+ng generate s auth

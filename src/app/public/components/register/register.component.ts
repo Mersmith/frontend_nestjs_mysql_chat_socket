@@ -21,7 +21,10 @@ export class RegisterComponent {
     { validators: CustomValidators.passwordsMatching }
   )
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) { }
 
   register() {
     console.log(this.form.value);
