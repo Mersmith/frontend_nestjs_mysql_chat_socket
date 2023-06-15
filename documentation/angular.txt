@@ -23,3 +23,7 @@ ng g s user
 npm i @auth0/angular-jwt --save
 
 ng generate s auth
+
+npm i ngx-socket-io
+
+ng g s private/services/chat-service/chat
