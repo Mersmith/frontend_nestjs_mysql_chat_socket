@@ -25,3 +25,10 @@ git status
 git add .
 git commit -m "Socket comunicación con Backend"
 git push origin 3_Socket
+
+git checkout -b 4_Socket_Chat
+git branch
+git status
+git add .
+git commit -m "Socket chat"
+git push origin 4_Socket_Chat
