@@ -1,2 +1,8 @@
 <p>dashboard works!</p>
 {{title | async}}
+
+<select>
+    <option *ngFor="let room of (rooms | async)?.items" [value]="room">
+        Name: {{ room.name }} - Id: {{ room.id }}
+    </option>
+</select>
