@@ -22,7 +22,7 @@ export class ChatService {
   }
 
   createRoom() {
-    const user2: UserI = {
+    /*const user2: UserI = {
       id: 3
     };
 
@@ -31,7 +31,11 @@ export class ChatService {
       users: [user2]
     };
 
-    this.socket.emit('createRoom', room);
+    this.socket.emit('createRoom', room);*/
 
+  }
+
+  emitPaginateRooms(limit: number, page: number) {
+    this.socket.emit('paginateRooms', { limit, page });
   }
 }
