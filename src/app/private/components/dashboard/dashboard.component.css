@@ -1,0 +1,22 @@
+.contorno_chat{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.izquierda{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+.derecha{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    border: 1px solid #000;
+    padding: 10px;
+
+}

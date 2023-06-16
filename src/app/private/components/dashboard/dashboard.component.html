@@ -1,8 +1,50 @@
 <p>dashboard works!</p>
 {{title | async}}
 
-<select>
-    <option *ngFor="let room of (rooms | async)?.items" [value]="room">
-        Name: {{ room.name }} - Id: {{ room.id }}
-    </option>
-</select>
+<div class="contorno_chat">
+    <!-- IZQUIERDA -->
+    <div class="izquierda">
+        <div>
+            <h2>Mis Chats</h2>
+            <button [routerLink]="['../create-room']">Crear nueva sala</button>
+        </div>
+
+        <div>
+            <h2>Lista ({{ (rooms | async)?.items?.length || 0 }})</h2>
+
+            <ul>
+                <li *ngFor="let room of (rooms | async)?.items">
+                    <label>
+                        <input type="radio" name="selectedRoom" [value]="room | json"
+                            (change)="onRoomSelectionChange($event)">
+                        Name: {{ room.name }} - Id: {{ room.id }}
+                    </label>
+                    <hr>
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <h2>Pagination</h2>
+
+            <div>
+                <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+                <button (click)="nextPage()" [disabled]="(rooms | async)?.items?.length === 0">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DERECHA -->
+    <div class="derecha">
+        <!-- CABECERA -->
+        <div>
+            <h2>Mi Chat</h2>
+            {{selectedRoom?.id}}
+        </div>
+
+        <!-- CHAT -->
+        <div>
+            <P>Chat</P>
+        </div>
+    </div>
+</div>

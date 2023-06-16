@@ -27,3 +27,5 @@ ng generate s auth
 npm i ngx-socket-io
 
 ng g s private/services/chat-service/chat
+
+ng g c private/components/create-room

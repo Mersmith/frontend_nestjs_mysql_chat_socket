@@ -32,3 +32,10 @@ git status
 git add .
 git commit -m "Socket chat"
 git push origin 4_Socket_Chat
+
+git checkout -b 5_Pagination_Socket
+git branch
+git status
+git add .
+git commit -m "Paginatio Socket Rooms"
+git push origin 5_Pagination_Socket
