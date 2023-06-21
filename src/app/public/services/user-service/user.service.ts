@@ -30,4 +30,8 @@ export class UserService {
     )
   }
 
+  findByUsername(username: string): Observable<UserI[]>{
+    return this.http.get<UserI[]>(`${this.environment.apiUrl}/users/find-by-username?username=${username}`);
+  }
+
 }

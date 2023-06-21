@@ -1,0 +1,42 @@
+<div>
+
+  <input matInput placeholder="Buscar usuario por nombre" [formControl]="buscarPorNombreUsuario">
+
+  <div>
+    <!-- IF -->
+    <!-- USUARIOS ENCONTRADOS -->
+    <ul *ngIf="seRealizoBusqueda  && usuariosFiltrados.length > 0; else no_usuarios_encontrados">
+      <li *ngFor="let usuario of usuariosFiltrados" (click)="seleccionarUsuario(usuario)">
+        <span>{{ usuario.id }} | {{ usuario.username }}</span>
+      </li>
+    </ul>
+
+    <!-- ENVIAR USUARIO AL FORMULARIO -->
+    <button type="button" (click)="agregarUsuarioAFormulario()">
+      Agregar usuario al formulario
+    </button>
+
+    <button type="button" (click)="borrarBusquedaUsario()">
+      Eliminar busqueda
+    </button>
+
+    <!-- ELSE -->
+    <!-- USUARIOS NO ENCONTRADOS -->
+    <ng-template #no_usuarios_encontrados>
+      <div *ngIf="seRealizoBusqueda && buscarPorNombreUsuario.value?.trim() !== ''">No se encontró este usuario.</div>
+    </ng-template>
+  </div>
+
+  <hr>
+  <br>
+  <div *ngIf="usuariosSalaChat.length > 0; else no_usuarios_en_sala">
+    <span *ngFor="let user of usuariosSalaChat" (click)="quitarUsuarioDeFormulario(user)">
+      {{user.username}}
+    </span>
+  </div>
+
+  <ng-template #no_usuarios_en_sala>
+    <div>No tienes usuarios para sala.</div>
+  </ng-template>
+
+</div>

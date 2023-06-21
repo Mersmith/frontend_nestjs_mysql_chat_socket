@@ -4,16 +4,20 @@ import { CommonModule } from '@angular/common';
 import { PrivateRoutingModule } from './private-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CreateRoomComponent } from './components/create-room/create-room.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SelectUsComponent } from './components/select-us/select-us.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    CreateRoomComponent
+    CreateRoomComponent,
+    SelectUsComponent
   ],
   imports: [
     CommonModule,
-    PrivateRoutingModule
+    PrivateRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class PrivateModule { }

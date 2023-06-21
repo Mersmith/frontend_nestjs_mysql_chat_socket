@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
 import { CustomSocket } from '../../sockets/custom-socket';
 import { RoomI, RoomPaginateI } from 'src/app/model/room.interface';
-import { UserI } from 'src/app/model/user.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,25 +16,17 @@ export class ChatService {
     return this.socket.fromEvent('message');
   }
 
-  getMyRooms() {
+  getMyRooms(): Observable<RoomPaginateI> {
     return this.socket.fromEvent<RoomPaginateI>('rooms');
   }
 
-  createRoom() {
-    /*const user2: UserI = {
-      id: 3
-    };
-
-    const room: RoomI = {
-      name: 'Testroom',
-      users: [user2]
-    };
-
-    this.socket.emit('createRoom', room);*/
-
+  createRoom(room: RoomI) {  
+    this.socket.emit('createRoom', room);
+    console.log(`Sala: ${room.name} creado satisfactoriamente.`)
   }
 
   emitPaginateRooms(limit: number, page: number) {
     this.socket.emit('paginateRooms', { limit, page });
   }
+  
 }
