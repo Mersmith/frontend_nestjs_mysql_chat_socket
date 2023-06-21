@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 
 export function tokenGetter(): string {
   const tokenLocalStorage = localStorage.getItem(environment.tokenLocalStorage);
-  console.log("tokenGetter: ", tokenLocalStorage);
+  //console.log("tokenGetter: ", tokenLocalStorage);
   return tokenLocalStorage ?? '';
 }
 

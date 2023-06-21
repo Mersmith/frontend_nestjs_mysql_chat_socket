@@ -1,8 +1,6 @@
-<p>dashboard works!</p>
-{{title | async}}
+{{tituloSocket | async}}
 
 <div class="contorno_chat">
-
     <!-- IZQUIERDA -->
     <div class="izquierda">
         <div>
@@ -10,18 +8,18 @@
             <button [routerLink]="['../create-room']">Crear nueva sala</button>
         </div>
 
-        <div *ngIf="(rooms | async) as roomData">
+        <div *ngIf="salasDataPaginadas">
             <!-- IF-->
-            <div *ngIf="roomData.items && roomData.items.length > 0; else no_rooms">
-
+            <!-- HAY SALAS DE CHAT -->
+            <div *ngIf="salasDataPaginadas.items && salasDataPaginadas.items.length > 0; else no_hay_salas_de_chat">
                 <!-- SALAS -->
-                <h2>Lista ({{ roomData.items.length }})</h2>
+                <h2>Lista ({{ salasDataPaginadas.items.length }})</h2>
                 <ul>
-                    <li *ngFor="let room of roomData.items">
+                    <li *ngFor="let salaChat of salasDataPaginadas.items">
                         <label>
-                            <input type="radio" name="selectedRoom" [value]="room | json"
-                                (change)="onRoomSelectionChange($event)">
-                            Name: {{ room.name }} - Id: {{ room.id }}
+                            <input type="radio" name="salaChatSeleccionada" [value]="salaChat | json"
+                                (change)="seleccionarSalaChat($event)">
+                            Nombre: {{ salaChat.name }} - Id: {{ salaChat.id }}
                         </label>
                         <hr>
                     </li>
@@ -29,18 +27,18 @@
 
                 <!-- PAGINACIÓN -->
                 <div>
-                    <h2>Pagination</h2>
-
+                    <h2>Paginación</h2>
                     <div>
-                        <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
-                        <button (click)="nextPage()" [disabled]="roomData?.items?.length === 0">Next</button>
+                        <button (click)="retrocederPaginaSalaChat()" [disabled]="paginacionActualDeSalas === 0">Retroceder</button>
+                        <button (click)="siguientePaginaSalaChat()" [disabled]="salasDataPaginadas.meta.totalPages === salasDataPaginadas.meta.currentPage">Siguiente</button>
                     </div>
                 </div>
             </div>
             <!-- ELSE IF-->
-            <ng-template #no_rooms>
+            <!-- NO HAY SALAS DE CHAT -->
+            <ng-template #no_hay_salas_de_chat>
                 <div>
-                    No hay habitaciones disponibles.
+                    No hay salas de chat disponibles.
                 </div>
             </ng-template>
         </div>
@@ -51,7 +49,7 @@
         <!-- CABECERA -->
         <div>
             <h2>Mi Chat</h2>
-            {{selectedRoom?.id}}
+            {{salaChatSeleccionada?.id}}
         </div>
 
         <!-- CHAT -->

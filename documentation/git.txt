@@ -46,3 +46,13 @@ git status
 git add .
 git commit -m "Crear Sala de Chat"
 git push origin 6_Crear_Sala
+
+git pull origin 6_Crear_Sala
+git pull origin master
+
+git checkout -b 7_Refactor_Spanish
+git branch
+git status
+git add .
+git commit -m "Refactor español"
+git push origin 7_Refactor_Spanish
