@@ -17,16 +17,15 @@ export class ChatService {
   }
 
   getMyRooms(): Observable<RoomPaginateI> {
-    return this.socket.fromEvent<RoomPaginateI>('rooms');
+    return this.socket.fromEvent<RoomPaginateI>('rooms');//Obtiene un Observable que escucha el evento 'rooms' del socket.
   }
 
-  createRoom(room: RoomI) {  
+  createRoom(room: RoomI) {
     this.socket.emit('createRoom', room);
-    console.log(`Sala: ${room.name} creado satisfactoriamente.`)
   }
 
-  emitPaginateRooms(limit: number, page: number) {
-    this.socket.emit('paginateRooms', { limit, page });
+  emitPaginateRooms(cantidadDeSalasPorPaginacion: number, paginacionActualDeSalas: number) {
+    this.socket.emit('paginateRooms', { cantidadDeSalasPorPaginacion, paginacionActualDeSalas });
   }
-  
+
 }

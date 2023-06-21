@@ -10,49 +10,57 @@ import { Observable } from 'rxjs';
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
 
-  title = this.chatService.getMessage();
+  tituloSocket = this.chatServicio.getMessage();
 
-  rooms: Observable<RoomPaginateI> = this.chatService.getMyRooms();
+  salaSocketObservable: Observable<RoomPaginateI> = this.chatServicio.getMyRooms();
+  salasDataPaginadas: RoomPaginateI | null = null;
+  salaChatSeleccionada: RoomI | null = null;
 
-  selectedRoom: RoomI | null = null;
-
-  currentPage = 1;
-  pageSize = 10;
+  cantidadDeSalasPorPaginacion = 10;
+  paginacionActualDeSalas = 0;// Es la página 1
 
   constructor(
-    private chatService: ChatService
+    private chatServicio: ChatService
   ) { }
 
+  //Se ejecuta después de que Angular haya inicializado todas las propiedades vinculadas a datos de una directiva.
   ngOnInit(): void {
-    //this.chatService.emitPaginateRooms(10, 0)
-    console.log("rooms: ", this.rooms);
+    this.salaSocketObservable.subscribe((dataSalasChat: RoomPaginateI) => {
+      this.salasDataPaginadas = dataSalasChat;
+    });
   }
 
+  //Se ejecuta después de que Angular haya inicializado completamente la vista de un componente.
   ngAfterViewInit() {
-    this.chatService.emitPaginateRooms(10, 0)
+    //Se emite el evento 'paginateRooms' utilizando el método emitPaginateRooms del servicio ChatService.
+    this.chatServicio.emitPaginateRooms(this.cantidadDeSalasPorPaginacion, this.paginacionActualDeSalas)
   }
 
-  getRooms() {
-    this.chatService.emitPaginateRooms(this.pageSize, this.currentPage);
+  traerSalasChat() {
+    this.chatServicio.emitPaginateRooms(this.cantidadDeSalasPorPaginacion, this.paginacionActualDeSalas);
   }
 
-  previousPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.getRooms();
+  retrocederPaginaSalaChat() {
+    if (this.paginacionActualDeSalas > 0) {
+      this.paginacionActualDeSalas--;
+      this.traerSalasChat();
     }
   }
 
-  nextPage() {
-    this.currentPage++;
-    this.getRooms();
+  siguientePaginaSalaChat() {
+    const totalPages = this.salasDataPaginadas?.meta.totalPages ?? 0;
+    const currentPage = this.salasDataPaginadas?.meta.currentPage ?? 0;
+    if (totalPages >= currentPage + 1) {
+      this.paginacionActualDeSalas++;
+      this.traerSalasChat();
+    }
   }
 
-  onRoomSelectionChange(event: Event) {
+  seleccionarSalaChat(event: Event) {
     const selectedRoomString: string = (event.target as HTMLInputElement).value;
-    const selectedRoom: RoomI = JSON.parse(selectedRoomString);
-    console.log(selectedRoom.id);
-    this.selectedRoom = selectedRoom;
+    const salaChatSeleccionada: RoomI = JSON.parse(selectedRoomString);
+    this.salaChatSeleccionada = salaChatSeleccionada;
+    console.log(salaChatSeleccionada);
   }
 
 }

@@ -10,7 +10,7 @@ import { Test, TestService } from './services/test-service/test.service';
 export class AppComponent {
   title = 'frontend-realtime-chat';
 
-  testValue: Observable<Test> = this.service.getTest();
+  testBackend: Observable<Test> = this.service.getTest();
 
   constructor(private service: TestService) { }
 }
