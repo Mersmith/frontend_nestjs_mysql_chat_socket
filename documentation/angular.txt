@@ -29,3 +29,9 @@ npm i ngx-socket-io
 ng g s private/services/chat-service/chat
 
 ng g c private/components/create-room
+
+git clone https://github.com/Mersmith/frontend_nestjs_mysql_chat_socket.git
+
+npm install
+
+ng g c private/components/select-us

@@ -1,1 +1,38 @@
-<p>create-room works!</p>
+<p>login works!</p>
+
+<div class="container">
+
+    <div>
+        <div class="login">
+            <a [routerLink]="['../dashboard']">Inicio</a>
+        </div>
+    </div>
+
+    <div>
+        <h2>Crea Sala</h2>
+        <div>
+            <form [formGroup]="formularioCrearSalaChat" (ngSubmit)="crearSalaChat()">
+                <!-- Nombre -->
+                <input type="text" formControlName="nombreSalaChat" placeholder="Nombre.">
+                <span *ngIf="nombreSalaChat.touched && nombreSalaChat.hasError('required')">Nombre es requerido.</span>
+
+                <br>
+
+                <!-- Descripcion -->
+                <input type="text" formControlName="descripcionSalaChat" placeholder="Descripcion.">
+                <span *ngIf="descripcionSalaChat.touched && descripcionSalaChat.hasError('required')">Descripción es requerido.</span>
+
+                <!-- Seleccionar usuario -->
+                <app-select-us [usuariosSalaChat]="usuariosSalaChat.value" (agregarUsuarioEvento)="agregarUsuarioASala(usuarioInicial($event))"
+                    (quitarUsuarioEvento)="quitarUsuarioDeSala($event.id)"></app-select-us>
+
+                <!-- Errores generales -->
+                <span *ngIf="!formularioCrearSalaChat.valid">Verique todos los campos.</span>
+
+                <!-- Enviar -->
+                <input type="submit" [disabled]="!formularioCrearSalaChat.valid" value="Crear">
+            </form>
+        </div>
+    </div>
+
+</div>

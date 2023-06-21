@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ChatService } from '../../services/chat-service/chat.service';
-import { RoomI } from 'src/app/model/room.interface';
+import { RoomI, RoomPaginateI } from 'src/app/model/room.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +12,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   title = this.chatService.getMessage();
 
-  rooms = this.chatService.getMyRooms();
+  rooms: Observable<RoomPaginateI> = this.chatService.getMyRooms();
 
   selectedRoom: RoomI | null = null;
 
@@ -23,10 +24,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    /*this.chatService.createRoom();
-    console.log("m***************************createRoom***************************");
-    console.log(this.rooms);     
-    */
+    //this.chatService.emitPaginateRooms(10, 0)
+    console.log("rooms: ", this.rooms);
   }
 
   ngAfterViewInit() {
