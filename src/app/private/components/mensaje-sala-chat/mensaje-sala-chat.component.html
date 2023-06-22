@@ -12,7 +12,7 @@
     </div>
 
     <!-- MENSAJES SALA CHAT -->
-    <div #messages>
+    <div #messages class="message">
         <span *ngFor="let message of (messagesPaginate$ | async)?.items">
             <app-mensaje-chat [message]="message"></app-mensaje-chat>
         </span>
