@@ -35,3 +35,7 @@ git clone https://github.com/Mersmith/frontend_nestjs_mysql_chat_socket.git
 npm install
 
 ng g c private/components/select-us
+
+ng g c private/components/mensaje-sala-chat
+
+ng g c private/components/mensaje-chat

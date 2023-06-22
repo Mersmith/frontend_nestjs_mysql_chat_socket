@@ -10,7 +10,7 @@ export interface RoomI {
     updated_at?: Date;
 }
 
-export  interface RoomPaginateI {
+export interface RoomPaginateI {
     items: RoomI[];
     meta: Meta;
 }
