@@ -56,3 +56,19 @@ git status
 git add .
 git commit -m "Refactor español"
 git push origin 7_Refactor_Spanish
+
+git checkout -b 8_Enviar_Mensaje
+git branch
+git status
+git add .
+git commit -m "8_Enviar_Mensaje"
+git push origin 8_Enviar_Mensaje
+
+git pull origin 8_Enviar_Mensaje
+
+git checkout -b 9_Enviar_Mensaje
+git branch
+git status
+git add .
+git commit -m "9_Enviar_Mensaje"
+git push origin 9_Enviar_Mensaje

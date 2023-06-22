@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { LoginResponseI } from 'src/app/model/login-response.interface';
 import { UserI } from 'src/app/model/user.interface';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,7 @@ import { UserI } from 'src/app/model/user.interface';
 export class AuthService {
 
   constructor(
-    private http: HttpClient,
-
+    private http: HttpClient, private jwtService: JwtHelperService,
     @Inject('APP_ENVIRONMENT')
     private environment: any
   ) { }
@@ -31,7 +31,11 @@ export class AuthService {
         return throwError(e);
       })
     )
+  }
 
+  getLoggedInUser() {
+    const decodedToken = this.jwtService.decodeToken();
+    return decodedToken.user;
   }
 
 }

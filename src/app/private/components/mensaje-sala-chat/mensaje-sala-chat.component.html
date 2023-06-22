@@ -1,0 +1,38 @@
+<div *ngIf="chatRoom; else chat_no_seleccionado">
+    <p>Chat seleccionado.</p>
+
+    <!-- DETALLE SALA CHAT -->
+    <div>
+        <h2>{{chatRoom.name}}</h2>
+        <p>{{chatRoom.updated_at | date}}</p>
+        <h3>{{chatRoom.description}}</h3>
+        <span *ngFor="let user of chatRoom.users">
+            {{user.username}},
+        </span>
+    </div>
+
+    <!-- MENSAJES SALA CHAT -->
+    <div #messages class="message">
+        <span *ngFor="let message of (messagesPaginate$ | async)?.items">
+            <app-mensaje-chat [message]="message"></app-mensaje-chat>
+        </span>
+    </div>
+
+    <!-- Add Message -->
+    <div style="position: absolute; bottom: 0; display: flex; flex-direction: row; align-items: center;">
+        <div style="width: 350px;">
+            <input  [formControl]="chatMessage" type="text">
+        </div>
+        <button [disabled]="!chatMessage.valid" (click)="sendMessage()">
+            <span style="display: flex; flex-direction: row; align-items: center;">
+                <p style="margin-left:10px;">Send</p>
+            </span>
+        </button>
+
+    </div>
+
+</div>
+
+<ng-template #chat_no_seleccionado>
+    <p>No hay chat seleccionado.</p>
+</ng-template>
