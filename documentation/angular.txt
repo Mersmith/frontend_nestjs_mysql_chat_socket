@@ -39,3 +39,6 @@ ng g c private/components/select-us
 ng g c private/components/mensaje-sala-chat
 
 ng g c private/components/mensaje-chat
+
+ng build --configuration=production
+ng build --configuration=production --base-href=/frontend-realtime-chat/

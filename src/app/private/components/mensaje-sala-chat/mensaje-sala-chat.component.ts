@@ -16,8 +16,8 @@ export class MensajeSalaChatComponent implements OnChanges, OnDestroy, AfterView
   @Input()
   chatRoom: RoomI | null = null;
 
-  @ViewChild('messages', { static: true })
-  private messagesScroller!: ElementRef<any>;
+  @ViewChild('messages', { static: false })
+  private messagesScroller!: ElementRef;
 
   chatMessage: FormControl = new FormControl(null, [Validators.required]);
 
@@ -53,7 +53,7 @@ export class MensajeSalaChatComponent implements OnChanges, OnDestroy, AfterView
   }
 
   ngAfterViewInit() {
-    if (this.messagesScroller) {
+    if (this.messagesScroller && this.messagesScroller.nativeElement) {
       this.scrollToBottom();
     }
   }
